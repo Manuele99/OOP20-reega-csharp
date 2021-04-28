@@ -23,7 +23,7 @@ namespace Reega.Navigation
     }
 
 
-    public interface IDataTemplate<T> : IDataTemplate
+    public interface IDataTemplate<TObject> : IDataTemplate
     {
         /// <summary>
         /// Get the factory for creating a control based on the <paramref name="controller"/>
