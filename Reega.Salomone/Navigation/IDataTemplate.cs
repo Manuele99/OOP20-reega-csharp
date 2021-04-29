@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Reega.Navigation
+namespace Reega.Salomone.Navigation
 {
 
     public interface IDataTemplate
@@ -30,6 +30,6 @@ namespace Reega.Navigation
         /// </summary>
         /// <param name="controller">Controller to use</param>
         /// <returns>Return a <see cref="IReegaView"/> that is the view representation of the controller</returns>
-        Func<IReegaView> GetControlFactory(T controller); 
+        Func<IReegaView> GetControlFactory(TObject controller); 
     }
 }

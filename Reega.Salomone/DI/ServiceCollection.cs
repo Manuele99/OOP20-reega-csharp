@@ -5,7 +5,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Reega.DI
+namespace Reega.Salomone.DI
 {
     public class ServiceCollection
     {

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Reega.DI
+namespace Reega.Salomone.DI
 {
     public class ServiceProvider
     {
