@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace Reega.Shared.Models
 {
-    class Data
+    public class Data
     {
         public int ContractID { get; }
 
