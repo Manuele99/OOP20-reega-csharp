@@ -11,7 +11,7 @@ namespace Reega.Tests.Pola
 {
     public class ExporterTest
     {
-        private static readonly IDictionary<long, double> SampleValues = new Dictionary<long, double>()
+        private static readonly IDictionary<long, double> SampleValues = new Dictionary<long, double>
         {
             {1614942000000, 5.5},
             {1614942002000, 6.4},

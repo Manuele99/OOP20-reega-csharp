@@ -1,17 +1,23 @@
-using Reega.Salomone.DI;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
+using Reega.Salomone.DI;
 
 namespace Reega.Salomone.Navigation
 {
     public class Navigator : INavigator
     {
+        private readonly Stack<IViewModel> _navigationStack = new();
+        private readonly ServiceProvider _serviceProvider;
+
+        private bool _navigationStackNotEmpty;
         private IViewModel _selectedViewModel;
+
+        public Navigator(ServiceProvider serviceProvider)
+        {
+            _serviceProvider = serviceProvider;
+        }
 
         public IViewModel SelectedViewModel
         {
@@ -22,8 +28,6 @@ namespace Reega.Salomone.Navigation
                 OnPropertyChanged();
             }
         }
-
-        private bool _navigationStackNotEmpty;
 
         public bool NavigationStackNotEmpty
         {
@@ -37,35 +41,29 @@ namespace Reega.Salomone.Navigation
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        private readonly Stack<IViewModel> _navigationStack = new();
-        private readonly ServiceProvider _serviceProvider;
-
-        public Navigator(ServiceProvider serviceProvider)
+        public T BuildViewModel<T>() where T : IViewModel
         {
-            this._serviceProvider = serviceProvider;
+            return _serviceProvider.GetService<T>() ?? throw new InvalidOperationException();
         }
-
-        public T BuildViewModel<T>() where T : IViewModel =>
-            this._serviceProvider.GetService<T>() ?? throw new InvalidOperationException();
 
         public void PopController()
         {
             if (NavigationStackNotEmpty)
             {
-                this._navigationStack.Pop();
-                this.NavigationStackNotEmpty = this._navigationStack.Count > 1;
-                this.SelectedViewModel = this._navigationStack.Peek();
+                _navigationStack.Pop();
+                NavigationStackNotEmpty = _navigationStack.Count > 1;
+                SelectedViewModel = _navigationStack.Peek();
             }
         }
 
         public void PushViewModelToStack(IViewModel viewModel, bool clearNavigationStack)
         {
             if (clearNavigationStack)
-                this._navigationStack.Clear();
+                _navigationStack.Clear();
 
-            this._navigationStack.Push(viewModel);
-            this.NavigationStackNotEmpty = this._navigationStack.Count > 1;
-            this.SelectedViewModel = viewModel;
+            _navigationStack.Push(viewModel);
+            NavigationStackNotEmpty = _navigationStack.Count > 1;
+            SelectedViewModel = viewModel;
         }
 
         private void OnPropertyChanged([CallerMemberName] string propertyName = null)

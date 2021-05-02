@@ -1,30 +1,25 @@
 using Reega.Salomone.DI;
 using Reega.Salomone.Navigation;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace Reega.Tests.Salomone
 {
     public class NavigationTest : IClassFixture<NavigationFixture>
     {
-        private NavigationFixture NavigationFixture { get; }
-
         public NavigationTest(NavigationFixture fixture)
         {
             NavigationFixture = fixture;
         }
 
+        private NavigationFixture NavigationFixture { get; }
+
         /// <summary>
-        /// Push one viewmodel
+        ///     Push one viewmodel
         /// </summary>
         [Fact]
         public void PushOneViewModel()
         {
-            Navigator navigator = new Navigator(NavigationFixture.ServiceProvider);
+            Navigator navigator = new(NavigationFixture.ServiceProvider);
             FirstTestViewModel vm = navigator.BuildViewModel<FirstTestViewModel>();
             Assert.NotNull(vm);
             navigator.PushViewModelToStack(vm, false);
@@ -33,12 +28,12 @@ namespace Reega.Tests.Salomone
         }
 
         /// <summary>
-        /// Push two viewmodels without clearing the stack
+        ///     Push two viewmodels without clearing the stack
         /// </summary>
         [Fact]
         public void PushTwoViewModels()
         {
-            Navigator navigator = new Navigator(NavigationFixture.ServiceProvider);
+            Navigator navigator = new(NavigationFixture.ServiceProvider);
             FirstTestViewModel vm = navigator.BuildViewModel<FirstTestViewModel>();
             Assert.NotNull(vm);
             navigator.PushViewModelToStack(vm, false);
@@ -52,12 +47,12 @@ namespace Reega.Tests.Salomone
         }
 
         /// <summary>
-        /// Push two viewmodels than pop one
+        ///     Push two viewmodels than pop one
         /// </summary>
         [Fact]
         public void PushTwoPopOneViewModel()
         {
-            Navigator navigator = new Navigator(NavigationFixture.ServiceProvider);
+            Navigator navigator = new(NavigationFixture.ServiceProvider);
             FirstTestViewModel vm = navigator.BuildViewModel<FirstTestViewModel>();
             Assert.NotNull(vm);
             navigator.PushViewModelToStack(vm, false);
@@ -74,12 +69,12 @@ namespace Reega.Tests.Salomone
         }
 
         /// <summary>
-        /// Push two viewmodels clearing the stack when pushing the second one
+        ///     Push two viewmodels clearing the stack when pushing the second one
         /// </summary>
         [Fact]
         public void PushTwoClearingStack()
         {
-            Navigator navigator = new Navigator(NavigationFixture.ServiceProvider);
+            Navigator navigator = new(NavigationFixture.ServiceProvider);
             FirstTestViewModel vm = navigator.BuildViewModel<FirstTestViewModel>();
             Assert.NotNull(vm);
             navigator.PushViewModelToStack(vm, false);
@@ -97,30 +92,30 @@ namespace Reega.Tests.Salomone
     }
 
     /// <summary>
-    /// Fixture for the test class
+    ///     Fixture for the test class
     /// </summary>
     public class NavigationFixture
     {
-        public ServiceProvider ServiceProvider { get; }
-
         public NavigationFixture()
         {
-            ServiceCollection svcCollection = new ServiceCollection();
+            ServiceCollection svcCollection = new();
             svcCollection.AddTransient<FirstTestViewModel>();
             svcCollection.AddTransient<SecondTestViewModel>();
             ServiceProvider = svcCollection.BuildServiceProvider();
         }
+
+        public ServiceProvider ServiceProvider { get; }
     }
 
     /// <summary>
-    /// First viewmodel
+    ///     First viewmodel
     /// </summary>
     internal class FirstTestViewModel : IViewModel
     {
     }
 
     /// <summary>
-    /// Second viewmodel
+    ///     Second viewmodel
     /// </summary>
     internal class SecondTestViewModel : IViewModel
     {

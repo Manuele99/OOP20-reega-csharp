@@ -1,36 +1,37 @@
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Reega.Shared.Models
 {
     public class Data
     {
+        public Data(int contractId, DataType dataType) : this(contractId, dataType, new Dictionary<long, double>())
+        {
+            ContractId = contractId;
+            Type = dataType;
+        }
+
+        public Data(int contractId, DataType dataType, IDictionary<long, double> data)
+        {
+            ContractId = contractId;
+            Type = dataType;
+            DataValuesByTimestamp = data;
+        }
+
         public int ContractId { get; }
 
         public DataType Type { get; }
 
         public IDictionary<long, double> DataValuesByTimestamp { get; }
 
-        public Data(int contractId, DataType dataType) : this(contractId, dataType, new Dictionary<long, double>())
+        public void AddRecord(long timestamp, double value)
         {
-            this.ContractId = contractId;
-            this.Type = dataType;
+            DataValuesByTimestamp.Add(timestamp, value);
         }
-
-        public Data(int contractId, DataType dataType, IDictionary<long, double> data)
-        {
-            this.ContractId = contractId;
-            this.Type = dataType;
-            this.DataValuesByTimestamp = data;
-        }
-
-        public void AddRecord(long timestamp, double value) =>
-            this.DataValuesByTimestamp.Add(timestamp, value);
 
         public void AddRecords(IDictionary<long, double> values)
         {
-            foreach (KeyValuePair<long, double> pair in values)
-                this.DataValuesByTimestamp.Add(pair.Key, pair.Value);
+            foreach (var pair in values)
+                DataValuesByTimestamp.Add(pair.Key, pair.Value);
         }
     }
 }

@@ -10,14 +10,16 @@ namespace Reega.Pola
     {
         private readonly IList<Data> _data;
 
-        public JsonExporter(IList<Data> data) =>
+        public JsonExporter(IList<Data> data)
+        {
             _data = data;
+        }
 
         public void Export(string file)
         {
             StreamWriter writer = File.CreateText(file);
 
-            List<ContractEntry> metrics = _data
+            var metrics = _data
                 .GroupBy(v => v.ContractId)
                 .Select(contract => new ContractEntry(
                     contract.Key,

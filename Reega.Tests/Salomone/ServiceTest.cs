@@ -1,9 +1,5 @@
-using Reega.Salomone.DI;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Reega.Salomone.DI;
 using Xunit;
 
 namespace Reega.Tests.Salomone
@@ -11,7 +7,7 @@ namespace Reega.Tests.Salomone
     public class ServiceTest
     {
         /// <summary>
-        /// Test for checking if registering an interface or an abstract class throws an exception
+        ///     Test for checking if registering an interface or an abstract class throws an exception
         /// </summary>
         [Fact]
         public void AbstractOrInterfaceRegistration()
@@ -23,7 +19,7 @@ namespace Reega.Tests.Salomone
 
 
         /// <summary>
-        /// Test for checking a registration of a singleton service via an interface and its implementation
+        ///     Test for checking a registration of a singleton service via an interface and its implementation
         /// </summary>
         [Fact]
         public void SingletonInterfaceImplementation()
@@ -38,7 +34,7 @@ namespace Reega.Tests.Salomone
         }
 
         /// <summary>
-        /// Test for checking a registration of a singleton service only via its implementation
+        ///     Test for checking a registration of a singleton service only via its implementation
         /// </summary>
         [Fact]
         public void SingletonImplementation()
@@ -52,7 +48,7 @@ namespace Reega.Tests.Salomone
         }
 
         /// <summary>
-        /// Test for checking a registration of a transient service via an interface and its implementation
+        ///     Test for checking a registration of a transient service via an interface and its implementation
         /// </summary>
         [Fact]
         public void TransientInterfaceImplementation()
@@ -67,7 +63,7 @@ namespace Reega.Tests.Salomone
         }
 
         /// <summary>
-        /// Test for checking a registration of a singleton service only via its implementation
+        ///     Test for checking a registration of a singleton service only via its implementation
         /// </summary>
         [Fact]
         public void TransientImplementation()
@@ -81,7 +77,8 @@ namespace Reega.Tests.Salomone
         }
 
         /// <summary>
-        /// Test for checking a registration of a singleton service via an interface and its implementation with an <see cref="Inject"/> constructor
+        ///     Test for checking a registration of a singleton service via an interface and its implementation with an
+        ///     <see cref="Inject" /> constructor
         /// </summary>
         [Fact]
         public void SingletonInjectInterfaceImplementation()
@@ -99,7 +96,8 @@ namespace Reega.Tests.Salomone
         }
 
         /// <summary>
-        /// Test for checking a registration of a singleton service only via its implementation with an <see cref="Inject"/> constructor
+        ///     Test for checking a registration of a singleton service only via its implementation with an <see cref="Inject" />
+        ///     constructor
         /// </summary>
         [Fact]
         public void SingletonInjectImplementation()
@@ -117,7 +115,8 @@ namespace Reega.Tests.Salomone
         }
 
         /// <summary>
-        /// Test for checking a registration of a transient service via an interface and its implementation with an <see cref="Inject"/> constructor
+        ///     Test for checking a registration of a transient service via an interface and its implementation with an
+        ///     <see cref="Inject" /> constructor
         /// </summary>
         [Fact]
         public void TransientInjectInterfaceImplementation()
@@ -135,7 +134,8 @@ namespace Reega.Tests.Salomone
         }
 
         /// <summary>
-        /// Test for checking a registration of a singleton service only via its implementation with an <see cref="Inject"/> constructor
+        ///     Test for checking a registration of a singleton service only via its implementation with an <see cref="Inject" />
+        ///     constructor
         /// </summary>
         [Fact]
         public void TransientInjectImplementation()
@@ -154,21 +154,21 @@ namespace Reega.Tests.Salomone
     }
 
     /// <summary>
-    /// Simple service interface
+    ///     Simple service interface
     /// </summary>
     internal interface IService
     {
     }
 
     /// <summary>
-    /// Simple service class that implements an interface
+    ///     Simple service class that implements an interface
     /// </summary>
     internal class Service : IService
     {
     }
 
     /// <summary>
-    /// Composite service that has a property inside
+    ///     Composite service that has a property inside
     /// </summary>
     internal interface ICompositeService
     {
@@ -176,21 +176,21 @@ namespace Reega.Tests.Salomone
     }
 
     /// <summary>
-    /// Composite service with <see cref="Inject"/> constructor
+    ///     Composite service with <see cref="Inject" /> constructor
     /// </summary>
     internal class CompositeService : ICompositeService
     {
-        public IService Service { get; }
-
         [Inject]
         public CompositeService(IService service)
         {
             Service = service;
         }
+
+        public IService Service { get; }
     }
 
     /// <summary>
-    /// Abstract service
+    ///     Abstract service
     /// </summary>
     internal abstract class AbstractService
     {

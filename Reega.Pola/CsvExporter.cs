@@ -1,8 +1,8 @@
-using System.Linq;
 using System.Collections.Generic;
-using Reega.Shared.Models;
 using System.IO;
+using System.Linq;
 using Reega.Shared.Extensions;
+using Reega.Shared.Models;
 
 namespace Reega.Pola
 {
@@ -10,8 +10,10 @@ namespace Reega.Pola
     {
         private readonly IList<Data> _data;
 
-        public CsvExporter(IList<Data> data) =>
+        public CsvExporter(IList<Data> data)
+        {
             _data = data;
+        }
 
 
         public void Export(string file)
@@ -40,7 +42,9 @@ namespace Reega.Pola
             writer.Close();
         }
 
-        private static string CsvRow(params object[] elements) =>
-            string.Join(",", elements.Select(v => v.ToString()));
+        private static string CsvRow(params object[] elements)
+        {
+            return string.Join(",", elements.Select(v => v.ToString()));
+        }
     }
 }
