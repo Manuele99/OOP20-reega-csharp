@@ -6,9 +6,9 @@ namespace Reega.Pola
 {
     public static class ReegaExporterFactory
     {
-        static void Export(ExportFormat format, string file, List<Data> data)
+        public static void Export(ExportFormat format, string file, IList<Data> data)
         {
-            List<Data> dataToBeExported = data ?? new List<Data>();
+            IList<Data> dataToBeExported = data ?? new List<Data>();
             IReegaExporter exporter = format switch
             {
                 ExportFormat.JSON => new JsonExporter(dataToBeExported),

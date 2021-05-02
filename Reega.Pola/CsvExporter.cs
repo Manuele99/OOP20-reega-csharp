@@ -9,9 +9,9 @@ namespace Reega.Pola
 {
     public class CsvExporter : IReegaExporter
     {
-        private readonly List<Data> _data;
+        private readonly IList<Data> _data;
 
-        public CsvExporter(List<Data> data) =>
+        public CsvExporter(IList<Data> data) =>
             _data = data;
 
 
@@ -30,7 +30,7 @@ namespace Reega.Pola
                         value.DataValuesByTimestamp
                             .OrderBy(t => t.Key)
                             .Select(record => CsvRow(
-                                new DateTime(record.Key).ToString("yyyy-MM-dd'T'HH:mm:ss"),
+                                Utils.UnixTimeToDateTime(record.Key).ToString("yyyy-MM-dd'T'HH:mm:ss"),
                                 contract.Key,
                                 Enum.GetName(value.Type),
                                 record.Value

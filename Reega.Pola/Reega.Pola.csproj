@@ -10,7 +10,4 @@
   <ItemGroup>
     <ProjectReference Include="..\Reega.Shared\Reega.Shared.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Tests\" />
-  </ItemGroup>
 </Project>

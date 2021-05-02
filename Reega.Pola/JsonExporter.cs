@@ -9,9 +9,9 @@ namespace Reega.Pola
 {
     public class JsonExporter : IReegaExporter
     {
-        private readonly List<Data> _data;
+        private readonly IList<Data> _data;
 
-        public JsonExporter(List<Data> data) =>
+        public JsonExporter(IList<Data> data) =>
             _data = data;
 
         public void Export(string file)
@@ -37,12 +37,14 @@ namespace Reega.Pola
         private class DataEntry
         {
             [JsonProperty("type")] private string _type;
-            [JsonProperty("values")] private IDictionary<long, double> _values;
+            [JsonProperty("values")] private IDictionary<string, double> _values;
 
             public DataEntry(string type, IDictionary<long, double> values)
             {
                 _type = type;
-                _values = values;
+                _values = values.ToDictionary(
+                    k => Utils.UnixTimeToDateTime(k.Key).ToString("yyyy-MM-dd'T'HH:mm:ss"),
+                    v => v.Value);
             }
         }
 

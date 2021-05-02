@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="FluentAssertions" Version="6.0.0-alpha0002" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.7.1" />
     <PackageReference Include="xunit" Version="2.4.1" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.3">
@@ -24,6 +25,17 @@
     <ProjectReference Include="..\Reega.Pola\Reega.Pola.csproj" />
     <ProjectReference Include="..\Reega.Salomone\Reega.Salomone.csproj" />
     <ProjectReference Include="..\Reega.Shared\Reega.Shared.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Pola\jsonSample.json" />
+    <EmbeddedResource Include="Pola\jsonSample.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <None Remove="Pola\csvSample.csv" />
+    <EmbeddedResource Include="Pola\csvSample.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
   </ItemGroup>
 
 </Project>
