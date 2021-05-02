@@ -5,26 +5,26 @@ namespace Reega.Shared.Models
 {
     public class Data
     {
-        public int ContractID { get; }
+        public int ContractId { get; }
 
         public DataType Type { get; }
 
         public IDictionary<long, double> DataValuesByTimestamp { get; }
 
-        public Data(int contractID, DataType dataType) : this(contractID,dataType, new Dictionary<long, double>() )
+        public Data(int contractId, DataType dataType) : this(contractId, dataType, new Dictionary<long, double>())
         {
-            this.ContractID = contractID;
+            this.ContractId = contractId;
             this.Type = dataType;
         }
 
-        public Data(int contractID, DataType dataType, IDictionary<long, double> data)
+        public Data(int contractId, DataType dataType, IDictionary<long, double> data)
         {
-            this.ContractID = contractID;
+            this.ContractId = contractId;
             this.Type = dataType;
             this.DataValuesByTimestamp = data;
         }
 
-        public void AddRecord(long timestamp, double value) => 
+        public void AddRecord(long timestamp, double value) =>
             this.DataValuesByTimestamp.Add(timestamp, value);
 
         public void AddRecords(IDictionary<long, double> values)
@@ -32,6 +32,5 @@ namespace Reega.Shared.Models
             foreach (KeyValuePair<long, double> pair in values)
                 this.DataValuesByTimestamp.Add(pair.Key, pair.Value);
         }
-
     }
 }

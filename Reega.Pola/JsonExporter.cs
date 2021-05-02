@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -19,11 +18,11 @@ namespace Reega.Pola
             StreamWriter writer = File.CreateText(file);
 
             List<ContractEntry> metrics = _data
-                .GroupBy(v => v.ContractID)
+                .GroupBy(v => v.ContractId)
                 .Select(contract => new ContractEntry(
                     contract.Key,
                     contract.Select(value => new DataEntry(
-                        Enum.GetName(value.Type),
+                        value.Type.Name,
                         value.DataValuesByTimestamp)
                     ).ToList()
                 )).ToList();
@@ -43,7 +42,7 @@ namespace Reega.Pola
             {
                 _type = type;
                 _values = values.ToDictionary(
-                    k => Utils.UnixTimeToDateTime(k.Key).ToString("yyyy-MM-dd'T'HH:mm:ss"),
+                    k => Utils.UnixTimeToDateTime(k.Key).ToString("yyyy-MM-dd HH:mm:ss"),
                     v => v.Value);
             }
         }

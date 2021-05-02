@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
@@ -7,14 +6,11 @@ using Newtonsoft.Json.Linq;
 using Reega.Pola;
 using Reega.Shared.Models;
 using Xunit;
-using Xunit.Abstractions;
 
 namespace Reega.Tests.Pola
 {
     public class ExporterTest
     {
-        private readonly ITestOutputHelper _testOutputHelper;
-
         private static readonly IDictionary<long, double> SampleValues = new Dictionary<long, double>()
         {
             {1614942000000, 5.5},
@@ -24,19 +20,14 @@ namespace Reega.Tests.Pola
 
         private static readonly IList<Data> SampleData = new List<Data>
         {
-            new(1, DataType.electricity, SampleValues),
-            new(1, DataType.gas, SampleValues),
-            new(1, DataType.glass, SampleValues),
-            new(1, DataType.mixed, SampleValues),
-            new(1, DataType.paper, SampleValues),
-            new(1, DataType.plastic, SampleValues),
-            new(1, DataType.water, SampleValues)
+            new(1, DataType.ELECTRICITY, SampleValues),
+            new(1, DataType.GAS, SampleValues),
+            new(1, DataType.GLASS, SampleValues),
+            new(1, DataType.MIXED, SampleValues),
+            new(1, DataType.PAPER, SampleValues),
+            new(1, DataType.PLASTIC, SampleValues),
+            new(1, DataType.WATER, SampleValues)
         };
-
-        public ExporterTest(ITestOutputHelper testOutputHelper)
-        {
-            _testOutputHelper = testOutputHelper;
-        }
 
         [Fact]
         public void ExportEmptyData()

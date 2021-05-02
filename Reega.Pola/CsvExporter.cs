@@ -1,4 +1,3 @@
-using System;
 using System.Linq;
 using System.Collections.Generic;
 using Reega.Shared.Models;
@@ -21,7 +20,7 @@ namespace Reega.Pola
             // header
             writer.WriteLine("timestamp,contract_id,type,value");
 
-            _data.GroupBy(v => v.ContractID)
+            _data.GroupBy(v => v.ContractId)
                 .OrderBy(v => v.Key)
                 .ForEach(contract =>
                 {
@@ -30,9 +29,9 @@ namespace Reega.Pola
                         value.DataValuesByTimestamp
                             .OrderBy(t => t.Key)
                             .Select(record => CsvRow(
-                                Utils.UnixTimeToDateTime(record.Key).ToString("yyyy-MM-dd'T'HH:mm:ss"),
+                                Utils.UnixTimeToDateTime(record.Key).ToString("yyyy-MM-dd HH:mm:ss"),
                                 contract.Key,
-                                Enum.GetName(value.Type),
+                                value.Type.Name,
                                 record.Value
                             )).ForEach(row => writer.WriteLine(row));
                     });
