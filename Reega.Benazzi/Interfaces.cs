@@ -41,7 +41,7 @@ namespace Reega.Benazzi
         Dictionary<DataType, double> GetSelectedUsage(List<DataType> services);
 
         /// <summary>
-        /// Generates the usage for the specified service; if the service does not belong to the ones specifies ate
+        /// Generates the usage for the specified service; if the service does not belong to the ones specifies at
         /// construction the method returns an Optional null.
         /// </summary>
         /// <param name="service"> type of service of which the usage will be generated. </param>
