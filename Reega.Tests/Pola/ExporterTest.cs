@@ -1,4 +1,4 @@
-namespace Reega.Pola.Tests
+namespace Reega.Tests.Pola
 {
     public class ExporterTest
     {

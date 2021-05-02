@@ -10,11 +10,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.editorconfig = .editorconfig
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reega.Benazzi", "Reega.Benazzi\Reega.Benazzi.csproj", "{3E6780B2-E826-458E-887B-F8E6C68189E1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Reega.Benazzi", "Reega.Benazzi\Reega.Benazzi.csproj", "{3E6780B2-E826-458E-887B-F8E6C68189E1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reega.Pola", "Reega.Pola\Reega.Pola.csproj", "{F58538E2-73F0-4BFA-8DE5-999C1211A3CB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Reega.Pola", "Reega.Pola\Reega.Pola.csproj", "{F58538E2-73F0-4BFA-8DE5-999C1211A3CB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reega.Shared", "Reega.Shared\Reega.Shared.csproj", "{63112E21-5F48-4623-8657-43C81BCDC34F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Reega.Shared", "Reega.Shared\Reega.Shared.csproj", "{63112E21-5F48-4623-8657-43C81BCDC34F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reega.Tests", "Reega.Tests\Reega.Tests.csproj", "{F4DC86CF-3953-404E-8397-B4CE60885DE1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -38,6 +40,10 @@ Global
 		{63112E21-5F48-4623-8657-43C81BCDC34F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{63112E21-5F48-4623-8657-43C81BCDC34F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{63112E21-5F48-4623-8657-43C81BCDC34F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4DC86CF-3953-404E-8397-B4CE60885DE1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4DC86CF-3953-404E-8397-B4CE60885DE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4DC86CF-3953-404E-8397-B4CE60885DE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4DC86CF-3953-404E-8397-B4CE60885DE1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
