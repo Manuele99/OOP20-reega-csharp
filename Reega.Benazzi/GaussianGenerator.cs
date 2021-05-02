@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Reega.Benazzi
 {
-    class GaussianGenerator : IGenerator
+    internal class GaussianGenerator : IGenerator
     {
         private readonly double _mean;
         private readonly double _variance;
@@ -20,7 +20,7 @@ namespace Reega.Benazzi
 
         }
 
-        public double NextValue()
+        public virtual double NextValue()
         {
             return this._mean + this._variance * this._random.NextGaussian();
         }
