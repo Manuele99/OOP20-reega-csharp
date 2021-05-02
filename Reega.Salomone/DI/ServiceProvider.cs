@@ -8,7 +8,6 @@ namespace Reega.Salomone.DI
 {
     public class ServiceProvider
     {
-
         private readonly ServiceCollection _svcCollection;
 
 
@@ -36,7 +35,8 @@ namespace Reega.Salomone.DI
 #nullable disable
         public T GetRequiredService<T>()
         {
-            return this._svcCollection.GetService<T>() ?? throw new ArgumentException($"No service for type: {typeof(T)}");
+            return this._svcCollection.GetService<T>() ??
+                   throw new ArgumentException($"No service for type: {typeof(T)}");
         }
     }
 }

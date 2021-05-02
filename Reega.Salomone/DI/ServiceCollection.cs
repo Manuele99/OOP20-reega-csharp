@@ -61,7 +61,7 @@ namespace Reega.Salomone.DI
         /// </summary>
         /// <typeparam name="TInterface">Interface type</typeparam>
         /// <typeparam name="TImplementation">Implementation type</typeparam>
-        public void AddSingleton<TInterface,TImplementation>() where TImplementation : TInterface
+        public void AddSingleton<TInterface, TImplementation>() where TImplementation : TInterface
         {
             if (!typeof(TInterface).IsInterface)
                 throw new ArgumentException($"{typeof(TInterface)} needs to be an interface");
@@ -79,7 +79,8 @@ namespace Reega.Salomone.DI
         public void AddTransient<TClass>(Func<ServiceProvider, TClass> implementationFunction)
         {
             _ = implementationFunction ?? throw new ArgumentNullException(nameof(implementationFunction));
-            this._transientDictionary.Add(typeof(TClass), serviceProvider => implementationFunction.Invoke(serviceProvider));
+            this._transientDictionary.Add(typeof(TClass),
+                serviceProvider => implementationFunction.Invoke(serviceProvider));
         }
 
         /// <summary>
@@ -121,9 +122,9 @@ namespace Reega.Salomone.DI
         {
             Type typeOfT = typeof(TService);
             if (this._singletonDictionary.ContainsKey(typeOfT))
-                return (TService?)this._singletonDictionary.GetValueOrDefault(typeOfT);
+                return (TService?) this._singletonDictionary.GetValueOrDefault(typeOfT);
             else if (this._transientDictionary.ContainsKey(typeOfT))
-                return (TService?)this._transientDictionary.GetValueOrDefault(typeOfT)?.Invoke(ServiceProvider);
+                return (TService?) this._transientDictionary.GetValueOrDefault(typeOfT)?.Invoke(ServiceProvider);
             return default;
         }
 
@@ -148,13 +149,17 @@ namespace Reega.Salomone.DI
         private (ConstructorInfo ctor, object?[] paramsImplementations) GetConstructorAndParametersByType(Type type)
         {
             _ = type ?? throw new ArgumentNullException(nameof(type));
-            List<ConstructorInfo> injectConstructors = type.GetConstructors().Where(ctor => ctor.CustomAttributes.Any(elem => elem.AttributeType == typeof(Inject))).ToList();
+            List<ConstructorInfo> injectConstructors = type.GetConstructors()
+                .Where(ctor => ctor.CustomAttributes.Any(elem => elem.AttributeType == typeof(Inject))).ToList();
             ConstructorInfo ctor;
             if (injectConstructors.Count == 0)
             {
-                ConstructorInfo? ctorInfo = type.GetConstructors().Where(ctor => ctor.GetParameters().Length == 0).FirstOrDefault();
+                ConstructorInfo? ctorInfo = type.GetConstructors().Where(ctor => ctor.GetParameters().Length == 0)
+                    .FirstOrDefault();
                 ctor = ctorInfo ??
-                        throw new ArgumentException("You don't have a constructor annotated with the [Inject] attribute, nor a constructor with no parameters"); ;
+                       throw new ArgumentException(
+                           "You don't have a constructor annotated with the [Inject] attribute, nor a constructor with no parameters");
+                ;
             }
             else if (injectConstructors.Count != 1)
                 throw new ArgumentException("You need to have only one constructor with [Inject] attribute");
@@ -164,7 +169,7 @@ namespace Reega.Salomone.DI
             object?[] paramsImplementations = ctor.GetParameters().Select(elem =>
             {
                 return this.GetObjectService(elem.ParameterType) ??
-                    throw new ArgumentException($"{elem.ParameterType} doesn't have a DI Service");
+                       throw new ArgumentException($"{elem.ParameterType} doesn't have a DI Service");
             }).ToArray();
 
             return (ctor, paramsImplementations);
@@ -178,8 +183,9 @@ namespace Reega.Salomone.DI
         /// <seealso cref="GetConstructorAndParametersByType(Type)"/>
         private TClass CreateInstance<TClass>()
         {
-            (ConstructorInfo ctor, object?[] paramsImplementations) = this.GetConstructorAndParametersByType(typeof(TClass));
-            return (TClass)ctor.Invoke(paramsImplementations);
+            (ConstructorInfo ctor, object?[] paramsImplementations) =
+                this.GetConstructorAndParametersByType(typeof(TClass));
+            return (TClass) ctor.Invoke(paramsImplementations);
         }
 #nullable disable
 

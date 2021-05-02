@@ -12,6 +12,7 @@ namespace Reega.Salomone.Navigation
     public class Navigator : INavigator
     {
         private IViewModel _selectedViewModel;
+
         public IViewModel SelectedViewModel
         {
             get => _selectedViewModel;
@@ -23,6 +24,7 @@ namespace Reega.Salomone.Navigation
         }
 
         private bool _navigationStackNotEmpty;
+
         public bool NavigationStackNotEmpty
         {
             get => _navigationStackNotEmpty;
@@ -64,7 +66,6 @@ namespace Reega.Salomone.Navigation
             this._navigationStack.Push(viewModel);
             this.NavigationStackNotEmpty = this._navigationStack.Count > 1;
             this.SelectedViewModel = viewModel;
-
         }
 
         private void OnPropertyChanged([CallerMemberName] string propertyName = null)

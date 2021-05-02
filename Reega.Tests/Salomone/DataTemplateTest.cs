@@ -69,10 +69,7 @@ namespace Reega.Tests.Salomone
 
         Func<object, IReegaView> IDataTemplate.ControlFactory
         {
-            get
-            {
-                return (controller) => ControlFactory((TObject)controller);
-            }
+            get { return (controller) => ControlFactory((TObject) controller); }
         }
 
         public SimpleDataTemplate(Func<TObject, IReegaView> controlFactory)
@@ -84,5 +81,7 @@ namespace Reega.Tests.Salomone
     /// <summary>
     /// Implementation of a <see cref="IReegaView"/>
     /// </summary>
-    internal class ReegaView : IReegaView { }
+    internal class ReegaView : IReegaView
+    {
+    }
 }

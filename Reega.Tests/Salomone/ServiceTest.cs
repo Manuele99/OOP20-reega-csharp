@@ -156,11 +156,17 @@ namespace Reega.Tests.Salomone
     /// <summary>
     /// Simple service interface
     /// </summary>
-    internal interface IService { }
+    internal interface IService
+    {
+    }
+
     /// <summary>
     /// Simple service class that implements an interface
     /// </summary>
-    internal class Service : IService { }
+    internal class Service : IService
+    {
+    }
+
     /// <summary>
     /// Composite service that has a property inside
     /// </summary>
@@ -168,22 +174,25 @@ namespace Reega.Tests.Salomone
     {
         IService Service { get; }
     }
+
     /// <summary>
     /// Composite service with <see cref="Inject"/> constructor
     /// </summary>
     internal class CompositeService : ICompositeService
     {
         public IService Service { get; }
+
         [Inject]
         public CompositeService(IService service)
         {
             Service = service;
         }
-        
     }
 
     /// <summary>
     /// Abstract service
     /// </summary>
-    internal abstract class AbstractService { }
+    internal abstract class AbstractService
+    {
+    }
 }

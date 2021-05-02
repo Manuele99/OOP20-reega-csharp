@@ -14,7 +14,9 @@ namespace Reega.Salomone.Navigation
 
         private readonly ConcurrentDictionary<Type, IDataTemplate> _templates = new();
 
-        private DataTemplateManager() { }
+        private DataTemplateManager()
+        {
+        }
 
         /// <summary>
         /// Static instance
@@ -73,6 +75,5 @@ namespace Reega.Salomone.Navigation
             return value;
         }
 #nullable disable
-
     }
 }

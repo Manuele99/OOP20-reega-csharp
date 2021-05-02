@@ -7,5 +7,7 @@ using System.Threading.Tasks;
 namespace Reega.Salomone.DI
 {
     [AttributeUsage(AttributeTargets.Constructor)]
-    public class Inject : Attribute { }
+    public class Inject : Attribute
+    {
+    }
 }

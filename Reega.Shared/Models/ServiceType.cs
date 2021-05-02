@@ -10,9 +10,11 @@ namespace Reega.Shared.Models
         public string Name { get; }
         public int Value { get; }
 
-        private ServiceType() { }
+        private ServiceType()
+        {
+        }
 
-        private ServiceType(string name,int value)
+        private ServiceType(string name, int value)
         {
             this.Name = name;
             this.Value = value;

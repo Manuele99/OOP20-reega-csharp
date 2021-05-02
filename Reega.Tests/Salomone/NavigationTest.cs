@@ -102,7 +102,8 @@ namespace Reega.Tests.Salomone
     public class NavigationFixture
     {
         public ServiceProvider ServiceProvider { get; }
-        public NavigationFixture() 
+
+        public NavigationFixture()
         {
             ServiceCollection svcCollection = new ServiceCollection();
             svcCollection.AddTransient<FirstTestViewModel>();
@@ -114,9 +115,14 @@ namespace Reega.Tests.Salomone
     /// <summary>
     /// First viewmodel
     /// </summary>
-    internal class FirstTestViewModel : IViewModel { }
+    internal class FirstTestViewModel : IViewModel
+    {
+    }
+
     /// <summary>
     /// Second viewmodel
     /// </summary>
-    internal class SecondTestViewModel : IViewModel { }
+    internal class SecondTestViewModel : IViewModel
+    {
+    }
 }

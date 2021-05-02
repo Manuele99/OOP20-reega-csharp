@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace Reega.Salomone.Navigation
 {
-
     public interface IDataTemplate
     {
         /// <summary>
         /// Get the class of the data object
         /// </summary>
         Type DataObjectClass { get; }
+
         /// <summary>
         /// Control factory that maps a data object to its visual representation
         /// </summary>
