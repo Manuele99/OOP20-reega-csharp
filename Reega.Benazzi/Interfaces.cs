@@ -57,6 +57,6 @@ namespace Reega.Benazzi
         /// water, electric energy and gas: new data every hour. - for plastic, glass, paper and mixed wastes: new data every
         /// day.
         /// </summary>
-        void Fill()
+        void Fill();
     }
 }
