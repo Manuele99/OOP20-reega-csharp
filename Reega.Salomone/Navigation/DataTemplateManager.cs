@@ -50,17 +50,15 @@ namespace Reega.Salomone.Navigation
         public void RemoveTemplate(IDataTemplate template)
         {
             _ = template ?? throw new ArgumentNullException(nameof(template));
-            this._templates.TryRemove(template.GetDataObjectClass(), out _);
+            this._templates.Remove(template.GetDataObjectClass(), out _);
         }
 
         /// <summary>
         /// Remove a template based on its <see cref="IDataTemplate.GetDataObjectClass"/>
         /// </summary>
-        /// <param name="dataObjectType">Data object class to remove</param>
-        public void RemoveTemplate(Type dataObjectType)
+        public void RemoveTemplate<T>()
         {
-            _ = dataObjectType ?? throw new ArgumentNullException(nameof(dataObjectType));
-            this._templates.TryRemove(dataObjectType, out _);
+            this._templates.Remove(typeof(T), out _);
         }
 
         /// <summary>
@@ -69,10 +67,9 @@ namespace Reega.Salomone.Navigation
         /// <param name="dataObjectType">Data object class to search</param>
         /// <returns>A non-null <see cref="IDataTemplate"/> if it has been found, a null <see cref="IDataTemplate"/> otherwise</returns>
 #nullable enable
-        public IDataTemplate? GetTemplate(Type dataObjectType)
+        public IDataTemplate? GetTemplate<T>()
         {
-            _ = dataObjectType ?? throw new ArgumentNullException(nameof(dataObjectType));
-            this._templates.TryGetValue(dataObjectType, out IDataTemplate? value);
+            this._templates.TryGetValue(typeof(T), out IDataTemplate? value);
             return value;
         }
 #nullable disable
