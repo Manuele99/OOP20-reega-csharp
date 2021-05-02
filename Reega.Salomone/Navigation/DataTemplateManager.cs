@@ -40,7 +40,7 @@ namespace Reega.Salomone.Navigation
         public void AddTemplate(IDataTemplate template)
         {
             _ = template ?? throw new ArgumentNullException(nameof(template));
-            this._templates.TryAdd(template.GetDataObjectClass(), template);
+            this._templates.TryAdd(template.DataObjectClass, template);
         }
 
         /// <summary>
@@ -50,7 +50,7 @@ namespace Reega.Salomone.Navigation
         public void RemoveTemplate(IDataTemplate template)
         {
             _ = template ?? throw new ArgumentNullException(nameof(template));
-            this._templates.Remove(template.GetDataObjectClass(), out _);
+            this._templates.Remove(template.DataObjectClass, out _);
         }
 
         /// <summary>
