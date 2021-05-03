@@ -13,7 +13,7 @@ namespace Reega.Shared.Data
         /// Push data into the database (implementation specific).
         /// </summary>
         /// <param name="data"> data that needs to be put in the database </param>
-        void PutUserData(Data data);
+        void PutUserData(Reega.Shared.Models.Data data);
 
         /// <summary>
         /// Get the latest timestamp for the specific contract and metric present in the database.
@@ -28,6 +28,6 @@ namespace Reega.Shared.Data
         /// </summary>
         /// <param name="contractID"> contractID that needs to get the monthly data </param>
         /// <returns> of data containing data from the first day of the month until today </returns>
-        List<Data> GetMonthlyData(int contractID);
+        List<Reega.Shared.Models.Data> GetMonthlyData(int contractID);
     }
 }
