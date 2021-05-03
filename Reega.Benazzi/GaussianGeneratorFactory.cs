@@ -25,14 +25,12 @@ namespace Reega.Benazzi
             if (_rangesMap.ContainsKey(dataType))
             {
                 return new PosGaussianGenerator(_random.NextDouble() * 0.2 + _rangesMap[dataType].Item1,
-                    _random.NextDouble() * 0.2 + _rangesMap[dataType].Item2)
+                    _random.NextDouble() * 0.2 + _rangesMap[dataType].Item2);
             } else
             {
                 return new GaussianGenerator(0.0, 0.0);
             }
-        }
-
-        
+        }        
     }
 
     internal class PosGaussianGenerator : GaussianGenerator

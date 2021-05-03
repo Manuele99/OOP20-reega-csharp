@@ -36,9 +36,9 @@ namespace Reega.Benazzi
         {
             if (this._generators.ContainsKey(service))
             {
-                return new Nullable<double>(this._generators[service].NextValue());
+                return this._generators[service].NextValue();
             }
-            return new double?();
+            return null;
         }
 
         public Dictionary<DataType, double> GetWastesUsage()
