@@ -1,3 +1,6 @@
+using System.Collections.Generic;
+using System.Linq;
+
 namespace Reega.Shared.Models
 {
     public class DataType
@@ -10,6 +13,21 @@ namespace Reega.Shared.Models
         public static DataType PLASTIC => new("plastic", 5, ServiceType.GARBAGE);
         public static DataType MIXED => new("mixed", 6, ServiceType.GARBAGE);
 
+        public static IEnumerable<DataType> Values
+        {
+            get
+            {
+                yield return ELECTRICITY;
+                yield return GAS;
+                yield return WATER;
+                yield return PAPER;
+                yield return GLASS;
+                yield return PLASTIC;
+                yield return MIXED;
+
+            }
+        }
+
         public string Name { get; }
         public int Value { get; }
         public ServiceType ServiceType { get; }
@@ -19,6 +37,11 @@ namespace Reega.Shared.Models
             Name = name;
             Value = value;
             ServiceType = serviceType;
+        }
+
+        public static IList<DataType> GetDataTypesByService(ServiceType svcType)
+        {
+           return DataType.Values.Where(e => e.ServiceType == svcType).ToList();
         }
     }
 }
