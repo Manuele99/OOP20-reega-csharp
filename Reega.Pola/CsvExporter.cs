@@ -1,5 +1,6 @@
 using System.Linq;
 using System.Collections.Generic;
+using System.Globalization;
 using Reega.Shared.Models;
 using System.IO;
 using Reega.Shared.Extensions;
@@ -40,7 +41,10 @@ namespace Reega.Pola
             writer.Close();
         }
 
-        private static string CsvRow(params object[] elements) =>
-            string.Join(",", elements.Select(v => v.ToString()));
+        private static string CsvRow(params object[] elements)
+        {
+            CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
+            return string.Join(",", elements.Select(v => v.ToString()));
+        }
     }
 }

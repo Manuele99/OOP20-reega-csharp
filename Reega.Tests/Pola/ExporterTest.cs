@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
@@ -35,7 +36,7 @@ namespace Reega.Tests.Pola
             string emptyCsvFile = Path.GetTempFileName();
             ReegaExporterFactory.Export(ExportFormat.CSV, emptyCsvFile, null);
             using StreamReader csvReader = File.OpenText(emptyCsvFile);
-            Assert.Equal("timestamp,contract_id,type,value\n", csvReader.ReadToEnd());
+            Assert.Equal("timestamp,contract_id,type,value" + Environment.NewLine, csvReader.ReadToEnd());
 
 
             string emptyJsonFile = Path.GetTempFileName();
