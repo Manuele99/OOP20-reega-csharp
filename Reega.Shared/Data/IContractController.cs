@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Reega.Shared.Models
+using Reega.Shared.Models;
 
 namespace Reega.Shared.Data
 {

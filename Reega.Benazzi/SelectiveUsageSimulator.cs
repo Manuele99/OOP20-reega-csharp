@@ -13,6 +13,7 @@ namespace Reega.Benazzi
 
         public SelectiveUsageSimulator(List<DataType> services)
         {
+            this._generators = new();
             foreach (DataType service in services)
             {
                 this._generators.Add(service, GaussianGeneratorFactory.GetGaussianGenerator(service));
