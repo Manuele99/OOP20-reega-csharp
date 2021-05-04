@@ -10,7 +10,7 @@ namespace Reega.Benazzi
 {
     public class OnDemandDataFiller : IDataFiller
     {
-        private const long _serciveStepping = 3_600_000L; // one hour in ms
+        private const long _serviceStepping = 3_600_000L; // one hour in ms
         private const long _garbageStepping = 86_400_000L; // one day in ms
         private readonly long _startDate = DateTimeOffset.Now.ToUnixTimeMilliseconds() - 2_592_600_000L; // 30 days and 10 min ago in ms
 
@@ -59,7 +59,7 @@ namespace Reega.Benazzi
         private void GenerateValues(IUsageSimulator simulator , Data data)
         {
             Dictionary<long, double> simulations = new();
-            long stepping = data.Type.ServiceType == ServiceType.GARBAGE ? _garbageStepping : _serciveStepping;
+            long stepping = data.Type.ServiceType == ServiceType.GARBAGE ? _garbageStepping : _serviceStepping;
             long? dataDate = this._database.GetLatestData(data.ContractId, data.Type);
             if (dataDate is null || dataDate == 0L)
             {
