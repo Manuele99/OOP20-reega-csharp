@@ -64,7 +64,7 @@ namespace Reega.Tests.Pola
 
             using StreamReader csvReader = File.OpenText(csvFile);
             string sample = GetSampleFile("csvSample.csv");
-            Assert.Equal(sample, csvReader.ReadToEnd());
+            Assert.Equal(sample, csvReader.ReadToEnd().Replace("\r\n","\n"));
         }
 
         private static string GetSampleFile(string name)
