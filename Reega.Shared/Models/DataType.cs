@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -43,5 +44,23 @@ namespace Reega.Shared.Models
         {
            return DataType.Values.Where(e => e.ServiceType == svcType).ToList();
         }
+
+        public override bool Equals(object obj)
+        {
+            return obj is DataType type &&
+                   Name == type.Name &&
+                   Value == type.Value &&
+                   EqualityComparer<ServiceType>.Default.Equals(ServiceType, type.ServiceType);
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(Name, Value, ServiceType);
+        }
+
+        public static bool operator ==(DataType left, DataType right) =>
+            left.Equals(right);
+
+        public static bool operator !=(DataType left, DataType right) => !(left == right);
     }
 }

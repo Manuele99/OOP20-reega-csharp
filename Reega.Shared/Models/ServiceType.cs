@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace Reega.Shared.Models
@@ -27,6 +28,22 @@ namespace Reega.Shared.Models
         {
             this.Name = name;
             this.Value = value;
+        }
+
+        public static bool operator ==(ServiceType svc1, ServiceType svc2) => svc1.Equals(svc2);
+
+        public static bool operator !=(ServiceType svc1, ServiceType svc2) => !(svc1 == svc2);
+
+        public override bool Equals(object obj)
+        {
+            return obj is ServiceType type &&
+                   Name == type.Name &&
+                   Value == type.Value;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(Name, Value);
         }
     }
 }
