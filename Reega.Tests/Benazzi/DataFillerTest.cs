@@ -12,23 +12,53 @@ namespace Reega.Tests.Benazzi
 {
     public class DataFillerTest : IClassFixture<DataFixture>
     {
+        private const long _serviceStepping = 3_600_000L; // one hour in ms
+        private const long _garbageStepping = 86_400_000L; // one day in ms
+
+        private readonly long _timeNow;
+
         private DataFixture DataFixture { get; }
-        private OnDemandDataFiller OnDemandDataFiller { get; }
+        private IDataFiller DataFiller { get; }
 
         public DataFillerTest(DataFixture fixture)
         {
             this.DataFixture = fixture;
-            this.OnDemandDataFiller = new OnDemandDataFiller(fixture.DataController, fixture.ContractController);
+            this._timeNow = DateTimeOffset.Now.ToUnixTimeMilliseconds();
+            this.DataFiller = new OnDemandDataFiller(DataFixture.DataController, DataFixture.ContractController);
+            DataFixture.DataController.Reset();
         }
 
         [Fact]
-        public void DataFiller()
+        public void ContractNumber()
         {
-            
-            this.OnDemandDataFiller.Fill(); //after this data should be in the DataController
+            this.DataFiller.Fill(); //after this data should be in the DataController
             Dictionary<IContract, ISet<Data>> dataDictionary = this.DataFixture.DataController.ContractData;
             Assert.Equal(dataDictionary.Keys.Count, Contracts.ContractList.Count); // the number of contract in the dictionary should be the same as the number of the ones declared in Contracts
+           
+        }
+
+        [Fact]
+        public void DataNumber()
+        {
+            this.DataFiller.Fill(); //after this data should be in the DataController
+            Dictionary<IContract, ISet<Data>> dataDictionary = this.DataFixture.DataController.ContractData;
             //check foreach data of each contract if the number of values generated is right
+            foreach (IContract contract in Contracts.ContractList)
+            {
+                int serviceCount = (int)Math.Floor((double)(this._timeNow - new DateTimeOffset(contract.StartDate).ToUnixTimeMilliseconds()) / (double)_serviceStepping);
+                int garbageCount = (int)Math.Floor((double)(this._timeNow - new DateTimeOffset(contract.StartDate).ToUnixTimeMilliseconds()) / (double)_garbageStepping);
+                foreach (Data data in dataDictionary[contract])
+                {
+                    if (data.Type.ServiceType == ServiceType.GARBAGE)
+                    {
+                        Assert.Equal(data.DataValuesByTimestamp.Count, garbageCount);
+                    }
+                    else
+                    {
+                        Assert.Equal(data.DataValuesByTimestamp.Count, serviceCount);
+                    }
+                }
+            }
         }
     }
 
@@ -88,6 +118,12 @@ namespace Reega.Tests.Benazzi
             {
                 this._contractData.Add(contract, new HashSet<Data>() { data });
             }
+        }
+
+        //used after each test
+        public void Reset()
+        {
+            this._contractData = new();
         }
     }
 
