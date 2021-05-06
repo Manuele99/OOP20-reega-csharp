@@ -7,6 +7,10 @@ using Reega.Shared.Models;
 
 namespace Reega.Benazzi
 {
+    /// <summary>
+    /// Static factory to obtain GaussianGenerators based on the needed DataType.
+    /// Mean and variance of each GaussianGenerator are based on real usage values of the italian population. 
+    /// </summary>
     internal static class GaussianGeneratorFactory
     {
         public static readonly Dictionary<DataType, Tuple<double, double>> _rangesMap = new() {
@@ -33,6 +37,9 @@ namespace Reega.Benazzi
         }        
     }
 
+    /// <summary>
+    /// Internal wrapper to only generate positive values.
+    /// </summary>
     internal class PosGaussianGenerator : GaussianGenerator
     {
         public PosGaussianGenerator(double mean, double variance) : base(mean, variance) { }

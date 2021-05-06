@@ -28,15 +28,22 @@ namespace Reega.Tests.Benazzi
             DataFixture.DataController.Reset();
         }
 
+        /// <summary>
+        /// check if the number of contracts the data has been generated for is right
+        /// </summary>
         [Fact]
         public void ContractNumber()
         {
             this.DataFiller.Fill(); //after this data should be in the DataController
             Dictionary<IContract, ISet<Data>> dataDictionary = this.DataFixture.DataController.ContractData;
-            Assert.Equal(dataDictionary.Keys.Count, Contracts.ContractList.Count); // the number of contract in the dictionary should be the same as the number of the ones declared in Contracts
+            // the number of contract in the dictionary should be the same as the number of the ones declared in Contracts
+            Assert.Equal(dataDictionary.Keys.Count, Contracts.ContractList.Count); 
            
         }
 
+        /// <summary>
+        /// check if the number of data values generated for each constract is right
+        /// </summary>
         [Fact]
         public void DataNumber()
         {
@@ -74,6 +81,9 @@ namespace Reega.Tests.Benazzi
         }
     }
 
+    /// <summary>
+    /// Data controller implementation made for testing purposes
+    /// </summary>
     public class TestDataController : IDataController
     {
         private Dictionary<IContract, ISet<Data>> _contractData = new();
@@ -127,6 +137,9 @@ namespace Reega.Tests.Benazzi
         }
     }
 
+    /// <summary>
+    /// ContractController implementation made for testing purposes
+    /// </summary>
     public class TestContractController : IContractController
     {
         public List<IContract> UserContracts => Contracts.ContractDictionary["Ernesto"];
@@ -139,6 +152,9 @@ namespace Reega.Tests.Benazzi
         }
     }
 
+    /// <summary>
+    /// Class which constains a list of contracts made for testing
+    /// </summary>
     public static class Contracts
     {
 

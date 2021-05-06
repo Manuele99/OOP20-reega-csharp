@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Reega.Benazzi
 {
+    /// <summary>
+    /// a Generator for normally distributed values
+    /// </summary>
     internal class GaussianGenerator : IGenerator
     {
         private readonly double _mean;

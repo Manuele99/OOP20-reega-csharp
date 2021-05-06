@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Reega.Benazzi
 {
+    /// <summary>
+    /// wrapper of Random class wich provides a normally disrtibuted random generation
+    /// </summary>
     internal class RandomWithGaussian : System.Random
     {
         private double _nextNextGaussian;

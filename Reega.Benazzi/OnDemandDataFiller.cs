@@ -8,6 +8,9 @@ using Reega.Shared.Data;
 
 namespace Reega.Benazzi
 {
+    /// <summary>
+    /// Generates Data values and saves them in a database for each given contract  
+    /// </summary>
     public class OnDemandDataFiller : IDataFiller
     {
         private const long _serviceStepping = 3_600_000L; // one hour in ms
@@ -44,6 +47,7 @@ namespace Reega.Benazzi
             }
         }
 
+        /// <inheritdoc/>
         public void Fill()
         {
             foreach (KeyValuePair<IUsageSimulator, ISet<Data>> entry in this._usageDataDictionary)
