@@ -13,6 +13,7 @@ namespace Reega.Pola
         public JsonExporter(IList<Data> data) =>
             _data = data;
 
+        ///<inheritdoc/>
         public void Export(string file)
         {
             StreamWriter writer = File.CreateText(file);

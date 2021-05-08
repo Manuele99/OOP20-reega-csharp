@@ -14,7 +14,7 @@ namespace Reega.Pola
         public CsvExporter(IList<Data> data) =>
             _data = data;
 
-
+        ///<inheritdoc/>
         public void Export(string file)
         {
             StreamWriter writer = File.CreateText(file);
@@ -41,6 +41,11 @@ namespace Reega.Pola
             writer.Close();
         }
 
+        /// <summary>
+        /// build csv row given n values
+        /// </summary>
+        /// <param name="elements">values to join into csv row</param>
+        /// <returns>string containing the csv row</returns>
         private static string CsvRow(params object[] elements)
         {
             CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
